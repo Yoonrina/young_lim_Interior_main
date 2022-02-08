@@ -1,0 +1,231 @@
+/* font */
+@font-face {
+  font-family: 'NotoSansKR';
+  src: url(../font/NotoSansKR-Light.woff) format('woff');
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'NotoSansKR';
+  src: url(../font/NotoSansKR-Regular.woff) format('woff');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'NotoSansKR';
+  src: url(../font/NotoSansKR-Medium.woff) format('woff');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'SuisseIntl';
+  src: url(../font/SuisseIntl-Light.woff) format('woff');
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'SuisseIntl';
+  src: url(../font/SuisseIntl-Regular.woff) format('woff');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'SuisseIntl';
+  src: url(../font/SuisseIntl-Medium.woff) format('woff');
+  font-weight: 500;
+}
+
+/* 모든 img는 사이즈가 100%임 */
+img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* blind */
+.blind{
+  width: 1px;height: 1px;
+  position: absolute;
+  overflow: hidden;
+  margin: -1px;
+  clip: rect(0,0,0,0);
+}
+
+/* inner */
+.inner{
+  width: 1240px;
+  margin: 0 auto;
+}
+
+/* 움직이는 화살표 바로가기 버튼 공용 */
+.arrow_more{
+  display: inline-block;
+    width: 210px;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -.7px;
+    line-height: 38px;
+    color: #333;
+    border-top: 1px solid #d8d8d8;
+    border-bottom: 1px solid #d8d8d8;
+    position: relative;
+    padding-right: 40px;
+}
+.arrow_more::after{
+  content: '';
+  width: 30px;
+  height: 30px;
+  background-image: url(https://s3.ap-northeast-2.amazonaws.com/younglim-front-bucket/images/icon-arrow.png);
+  background-repeat: no-repeat;
+  background-size: 28px 29px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.arrow_more:hover::after{
+  animation-timing-function: linear;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-name: arrow-hover;
+}
+@keyframes arrow-hover{  0%{
+  background-size:100% 29px
+}
+50%{
+  background-size:120% 29px;
+  right:0
+}
+to{
+  background-size:100% 29px
+}
+}
+
+/* 슬라이드 버튼 호버 아이콘 */
+.cursor{
+  position: fixed;
+  display: block;
+  top: 0;left: 0;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 0 10px 0 rgb(0 0 0 / 15%);
+  background-color: rgba(255,255,255,0.9);
+  border-radius: 50%;
+  z-index: 999;
+
+  pointer-events: none;
+  visibility: hidden;
+}
+.cursor.hide{
+  visibility: hidden;
+  opacity: 0;
+}
+.cursor.show{
+  visibility: visible;
+}
+.cursor.disabled{
+  opacity: 0;
+}
+
+.cursor:before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 23px;
+  height: 17px;
+  transform: translate(-50%,-50%);
+  background-size: 23px 17px;
+  background-image: url(https://s3.ap-northeast-2.amazonaws.com/younglim-front-bucket/images/icon-slide-left-arrow.png);
+  background-position: 50%;
+  background-repeat: no-repeat; 
+}
+.cursor.right:before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 23px;
+  height: 17px;
+  transform: translate(-50%,-50%);
+  background-size: 23px 17px;
+  background-image: url(https://s3.ap-northeast-2.amazonaws.com/younglim-front-bucket/images/icon-slide-right-arrow.png);
+  background-position: 50%;
+  background-repeat: no-repeat; 
+}
+
+
+/* 슬라이드버튼영역 */
+.slide_btn{}
+.slide_btn .s_btn{
+  position: absolute;
+  top: 0;
+  outline: 0;
+  width: 25%;
+  height: 100%;
+  z-index: 99;
+  cursor: none;
+}
+.slide_btn .prev{
+  left: 0;
+  /* background: rgba(0, 0, 0, 0.05); */
+  cursor: default;
+}
+.slide_btn .next{
+  right: 0;
+  /* background: rgba(0, 0, 0, 0.05); */
+  cursor: default;
+}
+
+
+/* 마우스 올리면 색이 채워지는 박스버튼 공용 */
+.more_btn{
+  display: inline-block;
+  padding: 0 35px;
+  border: 1px solid hsla(0,0%,100%,.5);
+  height: 36px;
+  line-height: 36px;
+  font-size: 14px;
+  color: #fff;
+  letter-spacing: -.1px;
+}
+.more_btn:hover{
+  border-color: #fff;
+  background-color: #fff;
+  color: #333;
+  transition: background-color .2s linear,color .2s linear,border-color .2s linear;
+}
+
+/* 디자이너 Pick, 매거진Y 공용*/
+.cont_head{
+  display: flex;
+  justify-content: space-between;
+}
+.cont_head .main_title{
+  font-size: 32px;
+  color: #333;
+  line-height: 34px;
+  letter-spacing: -.1px;
+}
+
+/* go_btn */
+.go_btn{
+  display: inline-block;
+  font-size: 14px;
+  color: #333;
+  line-height: 18px;
+  letter-spacing: -.7px;    
+}
+.go_btn::before{
+  content: "";
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid #8d8d8d;
+  margin-bottom: -20px;
+}
+.go_btn::after{
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: url(https://s3.ap-northeast-2.amazonaws.com/younglim-front-bucket/images/icon-main-more.png) 0 0 no-repeat;
+  background-size: 100% auto;
+}

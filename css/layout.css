@@ -1,0 +1,669 @@
+@import 'reset.css';
+@import 'common.css';
+
+/* body */
+body{
+  font-family: 'SuisseIntl','NotoSansKR',sans-serif;
+  /* height: 100%; */
+  line-height: 1.2;
+  min-width: 1300px;
+}
+body::-webkit-scrollbar{
+  width: 4px;
+  height: 4px;
+}
+body::-webkit-scrollbar-thumb{
+  /* background: #e7e7e7; */
+  background: #555;
+  border: 0;
+  border-radius: 2px;
+}
+
+/* 검색창 search_area */
+.search_area{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* padding-top: 70px; */
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 10px 0 rgb(0 0 0 / 10%);
+  z-index: -1;
+  height: 0;
+  overflow: hidden;
+}
+.search_area .inner{
+  padding-top: 100px;
+  padding-bottom: 114px;
+  transition: padding-left .2s ease-out 0s,padding-right .2s ease-out 0s,width .2s ease-out 0s;
+  position: relative;
+}
+.search_area .inner::after{
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.search_area .left_area{
+  float: left;
+  width: 14%;
+}
+.left_area .search_title{
+  padding-right: 20px;
+  font-size: 14px;
+  color: #333;
+  line-height: 18px;
+  letter-spacing: -.12px;
+}
+
+.search_area .right_area{
+  float: left;
+  width: 86%;
+  padding-right: 65px;
+}
+
+.right_area .search_box{
+  padding: 0 50px 16px 0;
+  border-bottom: 1px solid #707070;
+  position: relative;
+  width: 100%;
+}
+.right_area .search_box .search_bar{
+  border: none;
+  width: 100%;
+  height: auto;
+  font-size: 38px;
+  letter-spacing: -1.48px;
+  line-height: 56px;
+  position: relative;
+  outline: none;
+  background-color: #fff;
+  font-weight: 400;
+  color: #333;
+}
+.right_area .search_box .search_bar::placeholder{
+  font-size: 38px;
+  font-weight: 300;
+  letter-spacing: -1.48px;
+  line-height: 56px;
+  color: #d4d1d1;
+}
+
+.right_area .keyword{
+  margin-top: 14px;
+}
+.right_area .keyword::after{
+  content: '';
+  display: block;
+  clear: both;
+}
+.right_area .keyword .keyword_title{
+  float: left;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: -.6px;
+  line-height: 20px;
+  color: #707070;
+}
+.right_area .keyword .k_list{
+  float: left;
+  margin-left: 10px;
+}
+.right_area .keyword .k_list::after{
+  content: '';
+  display: block;
+  clear: both;
+}
+.right_area .keyword .k_list .k_item{
+  float: left;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -.7px;
+    line-height: 20px;
+    color: #333;
+}
+.right_area .keyword .k_list .k_item+.k_item{
+  margin-left: 12px;
+}
+
+/* 고정 퀵버튼 fixed_btn */
+.fixed_btn{
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 50;
+}
+.fixed_btn .fixed{
+  display: block;
+  width: 190px;
+  height: 52px;
+  border-radius: 26px;
+  box-shadow: 0 0 10px 0 rgb(9 8 8 / 10%);
+  background-color: #fff;
+  padding: 9px 51px 0 23px;
+  transition: background-color .2s linear;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -.7px;
+  line-height: 34px;
+  color: #333;
+  text-align: left;
+}
+.fixed_btn:hover .fixed{
+  background: #333;
+  box-shadow: none;
+  color: #fff;
+}
+.fixed_btn .fixed::after{
+  content: "";
+    width: 27px;
+    height: 27px;
+    position: absolute;
+    top: 50%;
+    right: 22px;
+    margin-top: -14px;
+    background-image: url(https://s3.ap-northeast-2.amazonaws.com/younglim-front-bucket/images/icon-chat-black.png);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    transition: background-image .2s linear;
+}
+.fixed_btn:hover .fixed::after{
+  background-image: url(https://s3.ap-northeast-2.amazonaws.com/younglim-front-bucket/images/icon-chat-white.png);
+}
+
+/* header */
+header{
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  transition: top 0.3s ease-in-out 0s, background-color 0.3s;
+}
+header.hide{
+  top: -70px;
+}
+header::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 219px;
+  background-image: linear-gradient(to bottom, rgba(19, 16, 13, 0.19) 14%, rgba(129, 113, 98, 0) 81%);
+  pointer-events: none;
+  z-index: -1;
+}
+header.none::after{
+  background-image:none;
+}
+.gnb_box{
+  height: 70px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color 0.5s;
+}
+.gnb_box .wrap{
+  display: flex;
+}
+
+.gnb_box .logo_area{}
+.gnb_box .logo_area .ico_logo{
+  display: inline-block;
+  width: 142px;
+  height: 30px;
+  background-image: url(https://s3.ap-northeast-2.amazonaws.com/younglim-front-bucket/images/icon-younglim-logo-white.png);
+  background-size: 100%;
+  transition: background-image 0.5s;
+}
+
+.gnb_box .gnb_area{
+  margin-left: 20px;
+  transition: margin-left .2s ease-out 0s;
+}
+.gnb_box .gnb_area .g_list{
+  display: flex;
+}
+.gnb_box .gnb_area .g_list .g_item{
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.5s;
+
+  padding: 0 15px;
+  line-height: 30px;
+  display: block;
+  transition: padding .2s ease-out 0s;
+}
+.gnb_box .service_area{
+  display: flex;
+}
+.gnb_box .service_area .service_link{
+  display: block;
+}
+.gnb_box .service_area .service_link+.service_link{
+  margin-left: 20px;
+}
+.gnb_box .service_area .service_link>i{
+  display: block;
+  width: 30px;
+  height: 30px;
+}
+
+.gnb_box .service_area .service_link .ico_search{
+  background: url(https://s3.ap-northeast-2.amazonaws.com/younglim-front-bucket/images/icon-gnb-search-white.png
+  ) no-repeat;
+  background-size: 30px 30px;
+  transition: background-image 0.5s;
+}
+.gnb_box .service_area .service_link .ico_wish{
+  background: url(https://s3.ap-northeast-2.amazonaws.com/younglim-front-bucket/images/icon-gnb-like-white.png) no-repeat;
+  background-size: 30px 30px;
+  transition: background-image 0.5s;
+}
+.gnb_box .service_area .service_link .ico_mypage{
+  background: url(https://s3.ap-northeast-2.amazonaws.com/younglim-front-bucket/images/icon-gnb-login-white.png) no-repeat;
+  background-size: 30px 30px;
+  transition: background-image 0.5s;
+}
+
+/* 헤더에 .white 클래스 만들면(호버,스크롤위로올릴때) */
+header.white{
+  background: #fff;
+  z-index: 999;
+}
+header.white::after{
+  background-image: none;
+}
+.white .gnb_box{
+  color: #333;
+  transition: color 0.5s;
+  z-index: 999;
+}
+.white .gnb_box .gnb_area .g_list .g_item{
+  position: relative;
+}
+.white .gnb_box .gnb_area .g_list .g_item::before,
+.white .gnb_box .gnb_area .g_list .g_item.on::before{
+  content: '';
+  display: block;
+  width: calc(100% - 30px);
+  height: 2px;
+  background: #707070;
+  transition: opacity .15s ease-in-out 0s;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  opacity: 0;
+}
+.white .gnb_box .gnb_area .g_list .g_item:hover::before{
+  opacity: 1;
+}
+.white .gnb_box .logo_area .ico_logo{
+  background-image: url(https://s3.ap-northeast-2.amazonaws.com/younglim-front-bucket/images/icon-younglim-logo.png);
+  background-size: 100%;
+}
+.white .gnb_box .service_area .service_link .ico_search{
+  background: url(https://s3.ap-northeast-2.amazonaws.com/younglim-front-bucket/images/icon-gnb-search.png
+  ) no-repeat;
+  background-size: 30px 30px;
+}
+.white .gnb_box .service_area .service_link .ico_wish{
+  background: url(https://s3.ap-northeast-2.amazonaws.com/younglim-front-bucket/images/icon-gnb-like.png) no-repeat;
+  background-size: 30px 30px;
+}
+.white .gnb_box .service_area .service_link .ico_mypage{
+  background: url(https://s3.ap-northeast-2.amazonaws.com/younglim-front-bucket/images/icon-gnb-login.png) no-repeat;
+  background-size: 30px 30px;
+}
+
+.white .gnb_box .service_area .search:hover .ico_search{
+  background: url(https://s3.ap-northeast-2.amazonaws.com/younglim-front-bucket/images/icon-gnb-search-hover.png) no-repeat;
+  background-size: 30px 30px;
+  transition: background-image 0.5s;
+}
+.white .gnb_box .service_area .wish:hover .ico_wish{
+  background: url(https://s3.ap-northeast-2.amazonaws.com/younglim-front-bucket/images/icon-gnb-like-active.png) no-repeat;
+  background-size: 30px 30px;
+  transition: background-image 0.5s;
+}
+.white .gnb_box .service_area .mypage:hover .ico_mypage{
+  background: url(https://s3.ap-northeast-2.amazonaws.com/younglim-front-bucket/images/icon-gnb-login-hover.png) no-repeat;
+  background-size: 30px 30px;
+  transition: background-image 0.5s;
+}
+
+/* 커서올리면 나타나는 서브메뉴,컨텐츠 */
+.gnb_menu_box{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  margin-top: 70px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 10px 10px 0 rgb(0 0 0 / 10%);
+  transition: opacity 0.3s;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+.gnb_menu_box.op1{
+  opacity: 1;
+}
+.gnb_menu_box .inner{
+  padding: 16px 0 73px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.gnb_menu_box .gnb_area .g_list{
+  display: flex;
+}
+
+/* 중분류 호버시 클래스 생성 */
+.gnb_menu_box .g_item{
+  visibility: hidden;
+  position: absolute;
+}
+.gnb_menu_box .g_item.show{
+  visibility: visible;
+  position: initial;
+}
+
+.gnb_menu_box .gnb_area .g_list .g_item{
+  margin-left: 172px;
+}
+
+.gnb_menu_box .gnb_area .g_list .g_item>span{
+  position: absolute;
+  left: 0;
+  top: 16px;
+  display: block;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -.7px;
+  color: #f02c2c;
+  width: 172px;
+}
+
+/* 서브(중분류) */
+.gnb_menu_box .gnb_sub_box{
+  border-left: 1px solid #e7e7e7;
+}
+.gnb_menu_box .gnb_sub_box .g_s_list{
+  position: relative;
+}
+.gnb_menu_box .gnb_sub_box .g_s_list .g_s_item{
+  /* width: 164px; */
+  /* height: 32px; */
+  padding-left: 18px;
+  display: flex;
+}
+.gnb_menu_box .gnb_sub_box .g_s_list .g_s_item a{
+  display: block;
+  width: 164px;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: -.1px;
+  line-height: 32px;
+  color: #333;
+  position: relative;
+}
+.gnb_menu_box .gnb_sub_box .g_s_list .g_s_item a:hover{
+  font-weight: 500;
+}
+/* 소분류 */
+.g_s_list .g_s_item .third_arrow::after{
+  content: "";
+    width: 18px;
+    height: 18px;
+    background-image: url(https://s3.ap-northeast-2.amazonaws.com/younglim-front-bucket/images/icon-gnb-arrow.png);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    opacity: 0;
+    -webkit-transition: opacity .2s ease 0s,right .2s ease 0s;
+    transition: opacity .2s ease 0s,right .2s ease 0s;
+}
+.gnb_menu_box .gnb_sub_box .g_s_list .g_s_item .third_arrow:hover:after{
+  opacity: 1;
+  right: 8px;
+}
+
+
+
+.gnb_third_box{
+  min-height: 224px;
+  border-left: 1px solid #e7e7e7;
+  position: absolute;
+  left: 200px;
+  top: 0;
+  width: 164px;
+  display: none;
+}
+.gnb_third_box.on{
+  display: block;
+}
+.gnb_third_box .g_t_list{}
+.gnb_third_box .g_t_list .g_t_item{
+  padding-left: 18px;
+}
+
+
+/* gnb메뉴 컨텐츠 */
+.gnbmenu_content{
+  display: flex;
+}
+.gnbmenu_content .gnbmenu_banner{}
+.gnbmenu_banner .slid_box{
+  width: 417px;
+  position: relative;
+  overflow: visible;
+}
+.gnbmenu_banner .slid_box .bnr_box{
+  position: relative;
+}
+.gnbmenu_banner .slid_box .bnr_box .title_box{
+  position: absolute;
+  bottom: 18px;
+  left: 14px;
+  font-size: 14px;
+  color: #fff;
+  letter-spacing: -.7px;
+}
+.gnbmenu_banner .slid_box .bnr_box .title_box .tag{
+  margin-right: 3px;
+    padding: 3px 6px;
+    border: 1px solid hsla(0,0%,100%,.4);
+    font-size: 11px;
+    color: #fff;
+    line-height: 16px;
+    letter-spacing: -.09px;
+    position: relative;
+    bottom: 1px;
+}
+.slid_box .swiper-pagination{
+  position: absolute;
+  bottom: -21px;
+  text-align: center;
+}
+.slid_box .swiper-pagination .swiper-pagination-bullet{
+  width: 5px;
+  height: 5px;
+  background-color: #d8d8d8;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  opacity: 1;
+}
+.slid_box .swiper-pagination .swiper-pagination-bullet-active{
+  background-color: #333;
+}
+
+.gnbmenu_content .gnbmenu_recommend{
+  width: 170px;
+  margin: 0 40px 0 24px;
+}
+.gnbmenu_recommend .re_list{}
+.gnbmenu_recommend .re_list .re_item{}
+.gnbmenu_recommend .re_list .re_item .arrow_more{
+  border-bottom: none;
+}
+.re_item .comments_wrap{}
+.re_item .comments_wrap p{
+  font-size: 14px;
+  letter-spacing: -.7px;
+  line-height: 22px;
+  color: #707070;
+  font-weight: 400;
+}
+.re_item .comments_wrap .img{
+  width: 160px;
+  height: 141px;
+  background: url(https://s3.ap-northeast-2.amazonaws.com/younglim-front-bucket/images/gnb-recommend-illust.png) no-repeat;
+  background-size: 160px 141px;
+  margin-left: 50px;
+}
+
+/* footer */
+footer{
+  margin-top: 180px;
+  background-color: #f6f5f3;
+  padding-top: 42px;
+}
+.corp_area::after{
+  content: '';
+  display: block;
+  clear: both;
+}
+.corp_area .f_logo{
+  float: left;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -.92px;
+  color: #707070;
+}
+
+.corp_area .corp_wrap{
+  float: right;
+  display: flex;
+}
+.corp_area .corp_wrap .corp_list+.corp_list{
+  margin-left: 106px;
+}
+.corp_area .corp_wrap .corp_list .corp_item{
+  font-size: 16px;
+  letter-spacing: -.23px;
+  color: #707070;
+  padding: 8px 0;
+}
+.corp_area .corp_wrap .corp_list .corp_item:first-child{
+  padding-top: 0;
+}
+
+.corp_area .corp_wrap .sns_list .sns_item a{
+  width: 100px;
+  display: inline-block;
+  position: relative;
+}
+.corp_area .corp_wrap .sns_list .sns_item a::before{
+  content: "";
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  background: url(https://s3.ap-northeast-2.amazonaws.com/younglim-front-bucket/images/icon-footer-link.png) no-repeat;
+  background-size: 100% auto;
+}
+
+.add_area{
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #ddd;
+  margin-top: 60px;
+  padding-top: 25px;
+}
+.add_area .add_box{}
+.add_area .add_box address{
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: -.2px;
+  line-height: 24px;
+  color: #707070;
+}
+.add_box address strong{
+  display: block;
+  font-size: 16px;
+  letter-spacing: -.3px;
+  line-height: 22px;
+  color: #707070;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.add_box address .bar::after{
+  content: '';
+  display: inline-block;
+  width: 1px;
+  height: 10px;
+  background-color: #ddd;
+  margin: 0 3px 0 7px;
+}
+.capy_area{
+  margin-top: 50px;
+  background-color: #ecebe7;
+  padding: 16px 0;
+}
+.capy_area::after{
+  content: '';
+  display: block;
+  clear: both;
+}
+.capy_area .copyright{
+  float: left;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -.1px;
+  color: rgba(51,51,51,.7);
+  line-height: 18px;
+  text-transform: uppercase;
+}
+.capy_area .copyright::before{
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-image: url(https://s3.ap-northeast-2.amazonaws.com/younglim-front-bucket/images/icon-footer-copy.png);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  margin-bottom: -3px;
+}
+.capy_area .css{
+  float: right;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -.2px;
+  color: #707070;
+  line-height: 18px;
+}
+.capy_area .css strong{
+  display: inline;
+}
+.capy_area .css p{
+  display: inline;
+  margin-left: 3px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -.09px;
+  line-height: 18px;
+}
